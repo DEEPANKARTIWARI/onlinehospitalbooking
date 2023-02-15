@@ -47,7 +47,12 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <Container>
-        <Toolbar />
+        <CardMedia
+          sx={{ height: 60, marginTop: 0.5 }}
+          image="./img/health-gfb26566c1_1280.jpg"
+          title="green iguana"
+          alt="first name"
+        />
         <Divider />
         <List>
           <ListItem disablePadding onClick={() => setMenudata("About")}>
@@ -138,14 +143,17 @@ function ResponsiveDrawer(props) {
         <Toolbar>
           <IconButton></IconButton>
 
-          <Box sx={{ "& > :not(style)": { m: 1 } }}>
-            <FormControl variant="standard">
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <AccountCircle />
-                &nbsp; User name
-              </Box>
-            </FormControl>
+          {/* <Box sx={{ '& > :not(style)': { m: 1 } }} >
+      <FormControl variant="standard"> */}
+
+          <Box sx={{ display: "flex", justifyContent: "end", width: "95%" }}>
+            <AccountCircle />
+            &nbsp;
+            <Typography>Username</Typography>
           </Box>
+
+          {/* </FormControl>
+        </Box> */}
         </Toolbar>
       </AppBar>
       <Box
