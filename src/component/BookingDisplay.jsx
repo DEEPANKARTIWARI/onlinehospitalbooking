@@ -1,11 +1,4 @@
-import {
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  Typography,
-} from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { yellow } from "@mui/material/colors";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
@@ -13,10 +6,20 @@ import React, { useState } from "react";
 function BookingDisplay() {
   const [first, setfirst] = useState(false);
   let ls = JSON.parse(localStorage.getItem("email.bookings"));
-  const cancelBooking = (index) => {
-    console.log(index);
+  let adminData = JSON.parse(localStorage.getItem("adminData"));
+
+  const cancelBooking = (index, plan) => {
     ls.splice(index, 1);
     localStorage.setItem("email.bookings", JSON.stringify(ls));
+
+    adminData.map((element, index) => {
+      if (plan === element.test) {
+        console.log(adminData[index].slots);
+        adminData[index].slots = ++element.slots;
+      }
+      localStorage.setItem("adminData", JSON.stringify(adminData));
+    });
+
     setfirst(!first);
   };
   let isEmpty = false;
@@ -25,7 +28,9 @@ function BookingDisplay() {
   }
   return (
     <Box>
-      <Typography variant="h2">Your Bookings</Typography>
+      <Typography variant="h2" fontFamily={"initial"}>
+        Your Bookings
+      </Typography>
 
       {ls &&
         ls.map((element, index) => {
@@ -47,7 +52,7 @@ function BookingDisplay() {
                 color="error"
                 sx={{ float: "right" }}
                 onClick={() => {
-                  cancelBooking(index);
+                  cancelBooking(index, element.Plan);
                 }}
               >
                 Cancel booking
@@ -57,13 +62,13 @@ function BookingDisplay() {
                 Plan:{element.Plan}
               </Typography>
               <Typography variant="h5" fontFamily={"cursive"} my={2}>
-                Doctor Name:
+                Doctor Name:{element.Doctor}
               </Typography>
               <Typography variant="h3" fontFamily={"monospace"} my={2}>
                 Date:{element.Date}
               </Typography>
               <Typography variant="h3" fontFamily={"fantasy"} my={2}>
-                Price:
+                Price:{element.price}
               </Typography>
               <Typography variant="h4" fontFamily={"monospace"} my={2}>
                 Mode of payment:{element.Payment}

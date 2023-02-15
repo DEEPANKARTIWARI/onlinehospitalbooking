@@ -24,12 +24,15 @@ function BookingSlots() {
     Plan: "",
     Payment: "",
   });
+
   const [bookingerror, setBookingError] = React.useState({
     DateError: false,
     GenderError: false,
     PlanError: false,
     PaymentError: false,
   });
+  let adminData = JSON.parse(localStorage.getItem("adminData"));
+
   const validateBooking = () => {
     let error = false;
     let tempDateError = false;
@@ -59,6 +62,16 @@ function BookingSlots() {
       PaymentError: tempPaymentError,
     });
     if (error == false) {
+      let finalbooking;
+      adminData.map((element, index) => {
+        if (bookinginfo.Plan === element.test) {
+          finalbooking = {
+            ...bookinginfo,
+            Doctor: adminData[index].drName,
+            price: adminData[index].actMrp,
+          };
+        }
+      });
       let temp;
       let lc = localStorage.getItem("email.bookings");
       if (lc == null) {
@@ -66,18 +79,33 @@ function BookingSlots() {
       } else {
         temp = JSON.parse(lc);
       }
-      temp.push(bookinginfo);
+      temp.push(finalbooking);
       localStorage.setItem("email.bookings", JSON.stringify(temp));
     }
+    adminData.map((element, index) => {
+      if (bookinginfo.Plan === element.test) {
+        adminData[index].slots = --element.slots;
+      }
+      localStorage.setItem("adminData", JSON.stringify(adminData));
+    });
   };
 
   return (
     <Box width={"50%"} marginLeft={"25%"} marginTop={"10%"}>
-      <Typography variant="h3">Slot Booking Form</Typography>
+      <Typography variant="h3" fontFamily={"serif"}>
+        Slot Booking Form
+      </Typography>
       <Box>
-        <Typography align="left">Name:</Typography>
+        <Typography align="left" sx={{ my: 2 }}>
+          Name:John Doe
+        </Typography>
         <Box padding={3} sx={{ display: "flex", gap: 8 }} paddingLeft={0}>
-          <Typography align="left" padding={2} paddingLeft={0}>
+          <Typography
+            align="left"
+            padding={2}
+            paddingLeft={0}
+            sx={{ display: { xs: "none", md: "block" } }}
+          >
             Date of Booking<sup style={{ color: "red" }}>*</sup>
           </Typography>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -128,19 +156,84 @@ function BookingSlots() {
               value={bookinginfo.Plan}
               label="Age"
               onChange={(newValue) => {
-                setBookinginfo({ ...bookinginfo, Plan: newValue.target.value });
+                setBookinginfo({
+                  ...bookinginfo,
+                  Plan: newValue.target.value,
+                });
               }}
             >
-              <MenuItem value={"Blood Test"}>Blood Test</MenuItem>
-              <MenuItem value={"Tyroid"} disabled={true}>
-                Tyroid
+              <MenuItem
+                value={`${adminData[0].test}`}
+                disabled={adminData[0].slots <= 0 ? true : false}
+              >
+                <img
+                  style={{ marginRight: "30px" }}
+                  src={`${adminData[0].img}`}
+                  alt={`${adminData[0].test}`}
+                  width={"50px"}
+                ></img>
+                {adminData[0].test}
               </MenuItem>
-              <MenuItem value={"Complete Urine Examination"}>
-                Complete Urine Examination
+              <MenuItem
+                value={`${adminData[1].test}`}
+                disabled={adminData[1].slots <= 0 ? true : false}
+              >
+                <img
+                  style={{ marginRight: "30px" }}
+                  src={`${adminData[1].img}`}
+                  alt={`${adminData[1].test}`}
+                  width={"50px"}
+                ></img>
+                {adminData[1].test}
               </MenuItem>
-              <MenuItem value={"Blood pressure"}>Blood pressure</MenuItem>
-              <MenuItem value={"Pregnancy Test"}>Pregnancy Test</MenuItem>
-              <MenuItem value={"Full Body Checkup"}>Full Body Checkup</MenuItem>
+              <MenuItem
+                value={`${adminData[2].test}`}
+                disabled={adminData[2].slots <= 0 ? true : false}
+              >
+                <img
+                  style={{ marginRight: "30px" }}
+                  src={`${adminData[2].img}`}
+                  alt={`${adminData[2].test}`}
+                  width={"50px"}
+                ></img>
+                {adminData[2].test}
+              </MenuItem>
+              <MenuItem
+                value={`${adminData[3].test}`}
+                disabled={adminData[3].slots <= 0 ? true : false}
+              >
+                <img
+                  style={{ marginRight: "30px" }}
+                  src={`${adminData[3].img}`}
+                  alt={`${adminData[3].test}`}
+                  width={"50px"}
+                ></img>
+                {adminData[3].test}
+              </MenuItem>
+              <MenuItem
+                value={`${adminData[4].test}`}
+                disabled={adminData[4].slots <= 0 ? true : false}
+              >
+                <img
+                  style={{ marginRight: "30px" }}
+                  src={`${adminData[4].img}`}
+                  alt={`${adminData[4].test}`}
+                  width={"50px"}
+                ></img>
+                {adminData[4].test}
+              </MenuItem>
+              <MenuItem
+                value={`${adminData[5].test}`}
+                disabled={adminData[5].slots <= 0 ? true : false}
+              >
+                <img
+                  style={{ marginRight: "30px" }}
+                  src={`${adminData[5].img}`}
+                  alt={`${adminData[5].test}`}
+                  width={"50px"}
+                ></img>
+                {adminData[5].test}
+              </MenuItem>
             </Select>
             {bookingerror.PlanError && (
               <Typography
