@@ -24,7 +24,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LogoutIcon from "@mui/icons-material/Logout";
 import About from "./About";
 // import Price from "./Price";
-import { CardMedia, Container, FormControl } from "@mui/material";
+import { CardMedia, Container, FormControl, Typography } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import { useNavigate } from "react-router";
 import Plans from "./component/Plans";
@@ -37,6 +37,8 @@ function ResponsiveDrawer(props) {
   const nav = useNavigate();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const token = JSON.parse(localStorage.getItem("user_login"));
+  console.log(token);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -149,7 +151,7 @@ function ResponsiveDrawer(props) {
           <Box sx={{ display: "flex", justifyContent: "end", width: "95%" }}>
             <AccountCircle />
             &nbsp;
-            <Typography>Username</Typography>
+            <Typography>{token[0].name}</Typography>
           </Box>
 
           {/* </FormControl>
