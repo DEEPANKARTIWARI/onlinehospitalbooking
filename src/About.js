@@ -45,7 +45,7 @@ export default function RecipeReviewCard() {
     <Container>
     <Box marginTop={10}>
     <Grid container spacing={2}>
-    <Grid item xs={12}>
+    <Grid item xs={12} >
       
       <Box
         sx={{
@@ -67,7 +67,7 @@ export default function RecipeReviewCard() {
       </Box>
       
     </Grid>
-    <Grid item xs={4}>
+    <Grid item xs={12} md={4}>
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
@@ -144,7 +144,7 @@ export default function RecipeReviewCard() {
     </Card>
     </Grid>
 
-    <Grid item xs={4}>
+    <Grid item xs={12} md={4}>
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
@@ -221,7 +221,7 @@ export default function RecipeReviewCard() {
     </Card>
     </Grid>
 
-    <Grid item xs={4}>
+    <Grid item xs={12} md={4}>
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={

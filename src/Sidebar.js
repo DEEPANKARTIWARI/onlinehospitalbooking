@@ -23,8 +23,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LogoutIcon from '@mui/icons-material/Logout';
 import About from './About';
-import Price from './Price'
-import { CardMedia, Container, FormControl } from '@mui/material';
+
+import { CardMedia, Container, FormControl, Typography } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
 import { useNavigate } from 'react-router';
 
@@ -60,7 +60,12 @@ function ResponsiveDrawer(props) {
     <div>
       
       <Container>
-      <Toolbar />
+      <CardMedia
+        sx={{ height: 60,marginTop:0.5}}
+        image="./img/health-gfb26566c1_1280.jpg"
+        title="green iguana"
+        alt="first name"
+      />
       <Divider />
       <List >
         
@@ -153,17 +158,19 @@ function ResponsiveDrawer(props) {
             
           </IconButton>
           
-          <Box sx={{ '& > :not(style)': { m: 1 } }} >
-      <FormControl variant="standard">
+          {/* <Box sx={{ '& > :not(style)': { m: 1 } }} >
+      <FormControl variant="standard"> */}
         
-      <Box sx={{ display: 'flex', alignItems: 'flex-end' }}> 
-            <AccountCircle />&nbsp; User name
+      <Box sx={{ display: 'flex',justifyContent:'end',width:'95%' }}> 
+            <AccountCircle />&nbsp;
+            
+            <Typography>Username</Typography> 
            </Box>  
             
           
         
-        </FormControl>
-        </Box>
+        {/* </FormControl>
+        </Box> */}
         </Toolbar>
       </AppBar>
       <Box
@@ -203,7 +210,8 @@ function ResponsiveDrawer(props) {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         {menudata==="About"&&<About />}
-        {menudata==="Price"&&<Price />}
+        
+        
       </Box>
     </Box>
     
