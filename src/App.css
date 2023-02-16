@@ -36,3 +36,32 @@
     transform: rotate(360deg);
   }
 }
+
+.backround-img{
+ 
+  width: 50%;
+  height: auto;
+}
+
+.background-img img{
+  z-index: -1;
+  height: 56em;
+  width: 100%;
+  position: relative;
+  right:3em ;
+}
+.justify-content-space{
+  justify-content: space-around;
+}
+.login-content{
+  width: 65em;
+  position: relative;
+  left: 39em;
+  top:5em
+}
+.login{
+  width: 65em;
+  position: relative;
+  left: 25em;
+  top:5em
+}

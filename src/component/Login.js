@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import SIgn_img from "./SIgn_img";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from 'react-router-dom'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -62,10 +62,11 @@ const Login = () => {
         });
 
         if (userlogin.length === 0) {
+          
           alert("invalid details");
         } else {
           console.log("user login succesfulyy");
-
+          console.log(userlogin.length)
           localStorage.setItem("user_login", JSON.stringify(userlogin));
 
           history("/landingPage");
@@ -76,8 +77,8 @@ const Login = () => {
 
   return (
     <>
-      <div>
-        <section className="d-flex  justify-content-evenly">
+      <div className="d-flex">
+        <section className="d-flex login justify-content-evenly">
           <div
             className="left_data mt-3   w-50 text-center"
             style={{ paddingTop: "10%" }}
@@ -86,9 +87,9 @@ const Login = () => {
             <Form>
               <div>
                 <Form.Group
-                  className="mb-3 col-lg-6 "
+                  className="mb-3 col-lg-6 border border-dark rounded shadow "
                   controlId="formBasicEmail"
-                  style={{ marginLeft: "25%" }}
+                  style={{ marginLeft: "20%", width:"308px" }}
                 >
                   <Form.Control
                     type="email"
@@ -99,9 +100,9 @@ const Login = () => {
                 </Form.Group>
 
                 <Form.Group
-                  className="mb- col-lg-6"
+                  className="mb-3 col-lg-6 border border-dark rounded shadow"
                   controlId="formBasicPassword"
-                  style={{ marginLeft: "25%" }}
+                  style={{ marginLeft: "20%", width:"308px"}}
                 >
                   <Form.Control
                     type="password"
@@ -114,7 +115,7 @@ const Login = () => {
               </div>
               <Button
                 variant="primary"
-                className="col-lg-3 my-3"
+                className="col-lg-3 my-3 shadow"
                 onClick={addData}
                 style={{ background: "#2196f3" }}
                 type="submit"
@@ -122,14 +123,15 @@ const Login = () => {
                 Submit
               </Button>
             </Form>
-            <p className="mt-3">
-              Already Have an Account <span>SignIn</span>{" "}
-            </p>
+            <p className='mt-3'>Don't have an account? <span><NavLink to="/home">Register Now</NavLink></span> </p>
           </div>
 
-          <SIgn_img />
+          
         </section>
         <ToastContainer />
+        <div className='background-img'>
+        <img src='./img/medical-g042a21d5f_1280.png'/>
+    </div>
       </div>
     </>
   );

@@ -102,7 +102,7 @@ function ResponsiveDrawer(props) {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding onClick={() => nav("/")}>
+          <ListItem disablePadding onClick={() => nav("/") || localStorage.removeItem("user_login")}>
             <ListItemButton>
               <ListItemIcon>
                 <LogoutIcon />
