@@ -12,10 +12,10 @@ import BookingSlots from "./component/BookingSlots";
 function App() {
   return (
     <>
-      <Header />
+      
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+      <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Login />} />
         <Route path="/landingPage" element={<Sidebar />} />
         <Route path="*" element={<Errror />} />
         <Route path="/booking" element={<BookingSlots />} />
