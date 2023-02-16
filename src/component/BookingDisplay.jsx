@@ -1,16 +1,17 @@
 import { Button, Typography } from "@mui/material";
-import { yellow } from "@mui/material/colors";
 import { Box } from "@mui/system";
 import React, { useState } from "react";
+import DisabledByDefaultIcon from "@mui/icons-material/DisabledByDefault";
 
 function BookingDisplay() {
   const [first, setfirst] = useState(false);
-  let ls = JSON.parse(localStorage.getItem("email.bookings"));
+  const token = JSON.parse(localStorage.getItem("user_login"));
+  let ls = JSON.parse(localStorage.getItem(`${token[0].name}.bookings`));
   let adminData = JSON.parse(localStorage.getItem("adminData"));
 
   const cancelBooking = (index, plan) => {
     ls.splice(index, 1);
-    localStorage.setItem("email.bookings", JSON.stringify(ls));
+    localStorage.setItem(`${token[0].name}.bookings`, JSON.stringify(ls));
 
     adminData.map((element, index) => {
       if (plan === element.test) {
@@ -28,7 +29,15 @@ function BookingDisplay() {
   }
   return (
     <Box>
-      <Typography variant="h2" fontFamily={"initial"}>
+      <Typography
+        variant="h2"
+        fontFamily={"initial"}
+        textAlign={"center"}
+        sx={{
+          backgroundImage: " linear-gradient(to right,white, black , white)",
+          color: "white",
+        }}
+      >
         Your Bookings
       </Typography>
 
@@ -41,51 +50,66 @@ function BookingDisplay() {
               padding={5}
               sx={{
                 border: "solid",
-                borderColor: "red",
+                borderColor: "white",
                 borderRadius: "50px",
                 margin: 5,
-                backgroundImage: " linear-gradient(to right, red , yellow)",
+                backgroundImage:
+                  " linear-gradient(to right,white , #2196f3 5% , white)",
               }}
             >
-              <Button
-                variant="contained"
-                color="error"
-                sx={{ float: "right" }}
-                onClick={() => {
-                  cancelBooking(index, element.Plan);
-                }}
-              >
-                Cancel booking
-              </Button>
+              <Box>
+                <Button
+                  variant="contained"
+                  color="error"
+                  sx={{ float: "right", display: { md: "Block", xs: "none" } }}
+                  onClick={() => {
+                    cancelBooking(index, element.Plan);
+                  }}
+                >
+                  Cancel booking
+                </Button>
 
-              <Typography variant="h3" fontFamily={"fantasy"} my={2}>
+                <DisabledByDefaultIcon
+                  variant="contained"
+                  color="error"
+                  sx={{
+                    float: "right",
+                    display: { xs: "Block", md: "none" },
+                    fontSize: "50px",
+                  }}
+                  onClick={() => {
+                    cancelBooking(index, element.Plan);
+                  }}
+                />
+              </Box>
+              <Typography variant="h4" fontFamily={"fantasy"} my={1}>
                 Plan:{element.Plan}
               </Typography>
-              <Typography variant="h5" fontFamily={"cursive"} my={2}>
-                Doctor Name:{element.Doctor}
+              <Typography variant="h4" fontFamily={"cursive"} my={1}>
+                Doctor Name: Dr. {element.Doctor}
               </Typography>
-              <Typography variant="h3" fontFamily={"monospace"} my={2}>
+              <Typography variant="h4" fontFamily={"monospace"} my={1}>
                 Date:{element.Date}
               </Typography>
-              <Typography variant="h3" fontFamily={"fantasy"} my={2}>
-                Price:{element.price}
+              <Typography variant="h5" fontFamily={"monospace"} my={1}>
+                Price:&#8377;{element.price}
               </Typography>
-              <Typography variant="h4" fontFamily={"monospace"} my={2}>
-                Mode of payment:{element.Payment}
+              <Typography variant="h5" fontFamily={"monospace"} my={1}>
+                Mode of Payment:{element.Payment}
               </Typography>
             </Box>
           );
         })}
 
       {isEmpty && (
-        <>
-          <Typography variant="h2" fontFamily={"fantasy"}>
+        <Box textAlign={"center"} my={3}>
+          <Typography variant="h2" fontFamily={"fantasy"} my={3}>
             No bookings!!!!
           </Typography>
           <Typography variant="h3" fontFamily={"cursive"}>
             We are happy that You are healthy
           </Typography>
-        </>
+        </Box>
       )}
     </Box>
   );

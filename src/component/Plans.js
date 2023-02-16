@@ -70,7 +70,7 @@ function Plans() {
   // } else {
   //   temp = JSON.parse(lc);
   // }
-  // let newtemp = temp.concat(bookSlot);
+
   // localStorage.setItem("adminData", JSON.stringify(bookSlot));
 
   return (
