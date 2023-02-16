@@ -30,6 +30,7 @@ import { useNavigate } from "react-router";
 import Plans from "./component/Plans";
 import BookingSlots from "./component/BookingSlots";
 import BookingDisplay from "./component/BookingDisplay";
+import Users from "./component/Users";
 
 const drawerWidth = 240;
 
@@ -84,7 +85,7 @@ function ResponsiveDrawer(props) {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={()=> setMenudata('users')}>
             <ListItemButton>
               <ListItemIcon>
                 <AccountCircleIcon />
@@ -205,10 +206,12 @@ function ResponsiveDrawer(props) {
         }}
       >
         {menudata === "About" && <About />}
-        {menudata === "Price" && <Plans />}
+        {menudata === "Price" && <Plans setMenudata={setMenudata}/>}
         {menudata === "Book Slots" && <BookingSlots />}
         {menudata === "Booking" && <BookingDisplay />}
+        {menudata === "users" && < Users/>}
       </Box>
+      
     </Box>
   );
 }

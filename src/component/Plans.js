@@ -11,7 +11,7 @@ import {
 import { Container } from "@mui/system";
 import "../component/Plans.css";
 
-function Plans() {
+function Plans({ setMenudata }) {
   const [bookSlot, setBookSlot] = useState([
     {
       img: "https://newassets.apollo247.com/organs/ic_blood.png",
@@ -19,7 +19,7 @@ function Plans() {
       drName: "Prem Jadhav",
       mrp: "320",
       actMrp: "180",
-      slots: "4",
+      slots: "2",
     },
     {
       img: "https://newassets.apollo247.com/organs/ic_thyroid.png",
@@ -27,7 +27,7 @@ function Plans() {
       drName: "Suhail Ahamed",
       mrp: "435",
       actMrp: "370",
-      slots: "6",
+      slots: "4",
     },
     {
       img: "https://newassets.apollo247.com/organs/ic_kidney.png",
@@ -35,7 +35,7 @@ function Plans() {
       drName: "Mani",
       mrp: "524",
       actMrp: "420",
-      slots: "7",
+      slots: "5",
     },
     {
       img: "https://newassets.apollo247.com/cms/2021-05/heart.png",
@@ -43,15 +43,15 @@ function Plans() {
       drName: "Sheetal Bagal",
       mrp: "199",
       actMrp: "109",
-      slots: "3",
+      slots: "6",
     },
     {
       img: "https://newassets.apollo247.com/cms/2021-07/Full%20body.png",
       test: "Full Body Checkup",
-      drName: "Suhail Ahamed",
+      drName: "Samanth ",
       mrp: "1435",
       actMrp: "1370",
-      slots: "6",
+      slots: "1",
     },
     {
       img: "https://newassets.apollo247.com/cms/2021-05/pregnancy.png",
@@ -59,25 +59,27 @@ function Plans() {
       drName: "Mounika",
       mrp: "599",
       actMrp: "449",
-      slots: "5",
+      slots: "6",
     },
   ]);
 
   // let temp;
   // let lc = localStorage.getItem("adminData");
-  // if (lc === null) {
-  //   temp = bookSlot;
-  // } else {
+  // if (lc === !null) {
   //   temp = JSON.parse(lc);
-  // }
 
+  // } else {
+  //   temp = bookSlot;
+  // }
   // localStorage.setItem("adminData", JSON.stringify(bookSlot));
+
+  let temp = JSON.parse(localStorage.getItem("adminData"));
 
   return (
     <Container gutterBottom>
       <Box className="bx-1">
         <Grid container spacing={2}>
-          {bookSlot.map((e) => {
+          {temp.map((e) => {
             return (
               <Grid item lg={4}>
                 <Card>
@@ -124,7 +126,9 @@ function Plans() {
                     </div>
                   </CardContent>
                   <CardActions>
-                    <Button>Book slot</Button>
+                    <Button onClick={() => setMenudata("Book Slots")}>
+                      Book slot
+                    </Button>
                   </CardActions>
                 </Card>
               </Grid>
