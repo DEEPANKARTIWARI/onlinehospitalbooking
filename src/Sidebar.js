@@ -24,7 +24,7 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LogoutIcon from "@mui/icons-material/Logout";
 import About from "./About";
 // import Price from "./Price";
-import { CardMedia, Container, FormControl, Typography } from "@mui/material";
+import { CardMedia, Container, Typography } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import { useNavigate } from "react-router";
 import Plans from "./component/Plans";
@@ -39,7 +39,7 @@ function ResponsiveDrawer(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const token = JSON.parse(localStorage.getItem("user_login"));
   console.log(token);
-
+let status=token===null?false:true
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -102,7 +102,7 @@ function ResponsiveDrawer(props) {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding onClick={() => nav("/")}>
+          <ListItem disablePadding onClick={() => nav("/") || localStorage.removeItem("user_login")}>
             <ListItemButton>
               <ListItemIcon>
                 <LogoutIcon />
@@ -118,8 +118,8 @@ function ResponsiveDrawer(props) {
           image="./img/0E71F4CC-089C-493B-AB84-9A47F4E7D346_1_201_a.jpeg"
           title="green iguana"
           alt="first name"
-        />
-        <h4>Location & Direction</h4>
+        /><br></br>
+        <h5>Location & Direction</h5>
         <p>
           23, Near Tim, JK road,
           <br />
@@ -133,8 +133,12 @@ function ResponsiveDrawer(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
+
     <Box sx={{ display: "flex" }}>
+          {status && 
+          <>
       <CssBaseline />
+      
       <AppBar
         position="fixed"
         sx={{
@@ -208,8 +212,9 @@ function ResponsiveDrawer(props) {
         {menudata === "Price" && <Plans />}
         {menudata === "Book Slots" && <BookingSlots />}
         {menudata === "Booking" && <BookingDisplay />}
-      </Box>
+      </Box></>}
     </Box>
+  
   );
 }
 

@@ -63,15 +63,15 @@ function Plans() {
     },
   ]);
 
-  // let temp;
-  // let lc = localStorage.getItem("adminData");
-  // if (lc === null) {
-  //   temp = bookSlot;
-  // } else {
-  //   temp = JSON.parse(lc);
-  // }
-  // let newtemp = temp.concat(bookSlot);
-  // localStorage.setItem("adminData", JSON.stringify(bookSlot));
+  let temp;
+  let lc = localStorage.getItem("adminData");
+  if (lc === null) {
+    temp = bookSlot;
+  } else {
+    temp = JSON.parse(lc);
+  }
+  let newtemp = temp.concat(bookSlot);
+  localStorage.setItem("adminData", JSON.stringify(bookSlot));
 
   return (
     <Container gutterBottom>
