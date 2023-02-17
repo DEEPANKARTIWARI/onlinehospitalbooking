@@ -20,7 +20,8 @@ const Home = () => {
         password: ""
 
     })
-        const [confirmpwd,setConfirmpwd]=useState('')
+    
+    const [confirmpwd,setConfirmpwd]=useState('')
    
     console.log(inpval);
     let local = JSON.parse( localStorage.getItem("registeredusers"))
@@ -42,7 +43,7 @@ const Home = () => {
         e.preventDefault();
 
         const { name,lname,email,date,contactnumber,location, password } = inpval;
-
+    
         if (name === "") {
             toast.error('Name field is requred!',{
                 position: "top-center",
@@ -67,11 +68,19 @@ const Home = () => {
             toast.error('Contact number field is requred',{
                position: "top-center",
            });
-       } else if (contactnumber.length === 10) {
-        toast.error('contact number length should not be greater than 10',{
+        } else if (/[a-z,A-Z]/g.test(contactnumber)){
+            toast.error('Contact number should be number',{
+               position: "top-center",
+           });
+       } else if (!(contactnumber.length === 10)) {
+        toast.error('contact number length should be 10',{
            position: "top-center",
            });
-       }  else if (password === "") {
+       }  else if (location === "") {
+        toast.error('Location is required',{
+           position: "top-center",
+           });
+       }else if (password === "") {
              toast.error('password field is requred',{
                 position: "top-center",
             });
@@ -140,7 +149,7 @@ const Home = () => {
                             </Form.Group>
                             <Form.Group className="mb-3 col-lg-6 border border-dark rounded shadow" controlId="formBasicEmail">
 
-                                <Form.Control type="email" name='contactnumber' onChange={getdata} placeholder="Contact Number"  sx={{marginTop:'22px'}}/>
+                                <Form.Control type="text" name='contactnumber' onChange={getdata} placeholder="Contact Number"  sx={{marginTop:'22px'}}/>
                             </Form.Group>
                             <Form.Group className="mb-3 col-lg-6 border border-dark rounded shadow" controlId="formBasicEmail">
 
