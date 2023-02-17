@@ -43,7 +43,7 @@ export default function RecipeReviewCard() {
   return (
 
     <Container>
-    <Box marginTop={6}>
+    <Box marginTop={10}>
     <Grid container spacing={2}>
     <Grid item xs={12} >
       
