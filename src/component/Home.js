@@ -67,7 +67,7 @@ const Home = () => {
             toast.error('Contact number field is requred',{
                position: "top-center",
            });
-       } else if (contactnumber.length > 10) {
+       } else if (contactnumber.length === 10) {
         toast.error('contact number length should not be greater than 10',{
            position: "top-center",
            });
