@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Image } from '@mui/icons-material'
 
 const Home = () => {
 
@@ -22,11 +21,10 @@ const Home = () => {
 
     })
         const [confirmpwd,setConfirmpwd]=useState('')
-    const [data,setData] = useState([]);
+   
     console.log(inpval);
     let local = JSON.parse( localStorage.getItem("registeredusers"))
     let useremail=local.map((e)=>e.email)
-        
     const getdata = (e) => {
         // console.log(e.target.value);
         const { value, name } = e.target;
@@ -46,10 +44,14 @@ const Home = () => {
         const { name,lname,email,date,contactnumber,location, password } = inpval;
 
         if (name === "") {
-            toast.error(' name field is requred!',{
+            toast.error('Name field is requred!',{
                 position: "top-center",
             });
-        } else if (email === "") {
+        } else if (lname === "") {
+            toast.error('LastName  field is requred',{
+               position: "top-center",
+           });
+       }else if (email === "") {
              toast.error('email field is requred',{
                 position: "top-center",
             });
@@ -61,7 +63,15 @@ const Home = () => {
              toast.error('date field is requred',{
                 position: "top-center",
             });
-        } else if (password === "") {
+        } else if (contactnumber === "") {
+            toast.error('Contact number field is requred',{
+               position: "top-center",
+           });
+       } else if (contactnumber.length === 10) {
+        toast.error('contact number length should not be greater than 10',{
+           position: "top-center",
+           });
+       }  else if (password === "") {
              toast.error('password field is requred',{
                 position: "top-center",
             });
@@ -69,7 +79,8 @@ const Home = () => {
              toast.error('password length greater five',{
                 position: "top-center",
             });
-        } else if (useremail.includes(email)) {
+        } 
+        else if (useremail.includes(email)) {
             toast.error('email already exists',{
                position: "top-center",
            });
@@ -97,11 +108,10 @@ const Home = () => {
     }
     let pwderror 
 
-    if(confirmpwd!== inpval.password  )
+    if(confirmpwd!== inpval.password && confirmpwd!=="")
     { pwderror= true;}
     else {  pwderror= false;}
 
- 
 
 
     return (
@@ -159,7 +169,7 @@ const Home = () => {
                 <ToastContainer />
             </div>
             <div className='background-img' >
-                <img src='./img/medical-g042a21d5f_1280.png'/>
+                <img src='./img/medical-g042a21d5f_1280.png' alt='background img'/>
             </div>
         </div>
     )
