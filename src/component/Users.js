@@ -2,25 +2,33 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import React from 'react'
 
 function Users() {
+
+    let userDetails=JSON.parse(localStorage.getItem('registeredusers'))
+    console.log(userDetails);
   return (
     <div>
-        <TableContainer component={Paper} style={{backgroundColor:'#bbdefb', marginTop:'1em'}}>
+        <TableContainer component={Paper} elevation={20} style={{backgroundColor:'#90caf9', marginTop:'4em'}}>
             <Table>
                 <TableHead>
-                    <TableHead>
                         <TableRow>
-                            <TableCell style={{fontWeight:"bold"}}>Name</TableCell>
-                            <TableCell style={{fontWeight:"bold"}}>Email id</TableCell>
-                            <TableCell style={{fontWeight:"bold"}}>Date</TableCell>
+                            <TableCell style={{fontWeight:"bold"}}>First Name</TableCell>
+                            <TableCell style={{fontWeight:"bold"}}>Last Name</TableCell>
+                            <TableCell style={{fontWeight:"bold"}}>Eamil</TableCell>
+                            <TableCell style={{fontWeight:"bold"}}>Location</TableCell>
+                            <TableCell style={{fontWeight:"bold"}}>Contact Number</TableCell>
                         </TableRow>
                     </TableHead>
-                </TableHead>
                 <TableBody>
+                    {userDetails.map((e,i)=>{
+                        return(
                     <TableRow>
-                        <TableCell>Suhail</TableCell>
-                        <TableCell>sahamed025@gmail.com</TableCell>
-                        <TableCell>173 </TableCell>
+                        <TableCell>{e.name}</TableCell>
+                        <TableCell>{e.lname}</TableCell>
+                        <TableCell>{e.email}</TableCell>
+                        <TableCell>{e.location}</TableCell>
+                        <TableCell>{e.contactnumber}</TableCell>
                     </TableRow>
+  )})}
                 </TableBody>
             </Table>
         </TableContainer>

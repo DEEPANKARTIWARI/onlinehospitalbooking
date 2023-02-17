@@ -79,9 +79,9 @@ function Plans({ setMenudata }) {
     <Container gutterBottom>
       <Box className="bx-1">
         <Grid container spacing={2}>
-          {temp.map((e) => {
+          {temp.map((e,i) => {
             return (
-              <Grid item lg={4}>
+              <Grid item key={i} lg={4}>
                 <Card>
                   <CardContent>
                     <div className="cb1">
