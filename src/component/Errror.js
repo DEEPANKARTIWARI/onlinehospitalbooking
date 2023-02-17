@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 
 const Errror = () => {
 
-
     const history = useNavigate();
   return (
     <>

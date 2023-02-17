@@ -24,12 +24,13 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LogoutIcon from "@mui/icons-material/Logout";
 import About from "./About";
 // import Price from "./Price";
-import { CardMedia, Container, FormControl, Typography } from "@mui/material";
+import { CardMedia, Container, Typography } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import { useNavigate } from "react-router";
 import Plans from "./component/Plans";
 import BookingSlots from "./component/BookingSlots";
 import BookingDisplay from "./component/BookingDisplay";
+import Users from "./component/Users";
 
 const drawerWidth = 240;
 
@@ -39,7 +40,7 @@ function ResponsiveDrawer(props) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const token = JSON.parse(localStorage.getItem("user_login"));
   console.log(token);
-
+  let status = token === null ? false : true;
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -84,7 +85,7 @@ function ResponsiveDrawer(props) {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={() => setMenudata("users")}>
             <ListItemButton>
               <ListItemIcon>
                 <AccountCircleIcon />
@@ -102,7 +103,10 @@ function ResponsiveDrawer(props) {
             </ListItemButton>
           </ListItem>
 
-          <ListItem disablePadding onClick={() => nav("/") || localStorage.removeItem("user_login")}>
+          <ListItem
+            disablePadding
+            onClick={() => nav("/") || localStorage.removeItem("user_login")}
+          >
             <ListItemButton>
               <ListItemIcon>
                 <LogoutIcon />
@@ -119,7 +123,8 @@ function ResponsiveDrawer(props) {
           title="green iguana"
           alt="first name"
         />
-        <h4>Location & Direction</h4>
+        <br></br>
+        <h5>Location & Direction</h5>
         <p>
           23, Near Tim, JK road,
           <br />
@@ -134,81 +139,89 @@ function ResponsiveDrawer(props) {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
-        }}
-      >
-        <Toolbar>
-          <IconButton></IconButton>
+      {status && (
+        <>
+          <CssBaseline />
 
-          {/* <Box sx={{ '& > :not(style)': { m: 1 } }} >
+          <AppBar
+            position="fixed"
+            sx={{
+              width: { sm: `calc(100% - ${drawerWidth}px)` },
+              ml: { sm: `${drawerWidth}px` },
+            }}
+          >
+            <Toolbar>
+              <IconButton></IconButton>
+
+              {/* <Box sx={{ '& > :not(style)': { m: 1 } }} >
       <FormControl variant="standard"> */}
 
-          <Box sx={{ display: "flex", justifyContent: "end", width: "95%" }}>
-            <AccountCircle />
-            &nbsp;
-            <Typography>{token[0].name}</Typography>
-          </Box>
+              <Box
+                sx={{ display: "flex", justifyContent: "end", width: "95%" }}
+              >
+                <AccountCircle />
+                &nbsp;
+                <Typography>{token[0].name}</Typography>
+              </Box>
 
-          {/* </FormControl>
+              {/* </FormControl>
         </Box> */}
-        </Toolbar>
-      </AppBar>
-      <Box
-        component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-        aria-label="mailbox folders"
-      >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
-        <Drawer
-          variant="permanent"
-          sx={{
-            display: { xs: "none", sm: "block" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-          open
-        >
-          {drawer}
-        </Drawer>
-      </Box>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-        }}
-      >
-        {menudata === "About" && <About />}
-        {menudata === "Price" && <Plans />}
-        {menudata === "Book Slots" && <BookingSlots />}
-        {menudata === "Booking" && <BookingDisplay />}
-      </Box>
+            </Toolbar>
+          </AppBar>
+          <Box
+            component="nav"
+            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+            aria-label="mailbox folders"
+          >
+            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+            <Drawer
+              container={container}
+              variant="temporary"
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              ModalProps={{
+                keepMounted: true, // Better open performance on mobile.
+              }}
+              sx={{
+                display: { xs: "block", sm: "none" },
+                "& .MuiDrawer-paper": {
+                  boxSizing: "border-box",
+                  width: drawerWidth,
+                },
+              }}
+            >
+              {drawer}
+            </Drawer>
+            <Drawer
+              variant="permanent"
+              sx={{
+                display: { xs: "none", sm: "block" },
+                "& .MuiDrawer-paper": {
+                  boxSizing: "border-box",
+                  width: drawerWidth,
+                },
+              }}
+              open
+            >
+              {drawer}
+            </Drawer>
+          </Box>
+          <Box
+            component="main"
+            sx={{
+              flexGrow: 1,
+              p: 3,
+              width: { sm: `calc(100% - ${drawerWidth}px)` },
+            }}
+          >
+            {menudata === "About" && <About />}
+            {menudata === "Price" && <Plans setMenudata={setMenudata} />}
+            {menudata === "Book Slots" && <BookingSlots />}
+            {menudata === "Booking" && <BookingDisplay />}
+            {menudata === "users" && <Users />}
+          </Box>
+        </>
+      )}
     </Box>
   );
 }
