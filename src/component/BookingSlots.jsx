@@ -1,27 +1,27 @@
-import { Box, Typography } from "@mui/material";
-import TextField from "@mui/material/TextField";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import {
+  Box,
+  Typography,
+  Radio,
+  TextField,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Button,
+  Select,
+} from "@mui/material";
 import React from "react";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button";
-import Select from "@mui/material/Select";
 import { Stack } from "@mui/system";
 
 function BookingSlots() {
   const [bookinginfo, setBookinginfo] = React.useState({
-    Date: null,
+    Date: "",
     Gender: "",
     Plan: "",
     Payment: "",
   });
-
+  console.log(bookinginfo);
   const [bookingerror, setBookingError] = React.useState({
     DateError: false,
     GenderError: false,
@@ -144,7 +144,7 @@ function BookingSlots() {
                 paddingLeft: "5px",
               }}
             >
-              {token[0].name}
+              {token[0].name} {token[0].lname}
             </span>
           </Typography>
           <Box padding={3} sx={{ display: "flex", gap: 8 }} paddingLeft={0}>
@@ -165,20 +165,18 @@ function BookingSlots() {
             >
               Date of Booking<sup style={{ color: "red" }}>*</sup>
             </Typography>
+            <TextField
+              defaultValue={new Date().toISOString().slice(0, 10)}
+              inputProps={{
+                // min: "2021-02-20T00:00",
+                min: new Date().toISOString().slice(0, 10),
+              }}
+              type={"date"}
+              onChange={(e) => {
+                setBookinginfo({ ...bookinginfo, Date: e.target.value });
+              }}
+            ></TextField>
 
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker
-                label="Date"
-                value={bookinginfo.Date}
-                onChange={(newValue) => {
-                  setBookinginfo({
-                    ...bookinginfo,
-                    Date: `${newValue.$D}/${newValue.$M + 1}/${newValue.$y}`,
-                  });
-                }}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </LocalizationProvider>
             {bookingerror.DateError && (
               <Typography
                 align="left"
@@ -192,7 +190,7 @@ function BookingSlots() {
           </Box>
           <Typography
             align="left"
-            sx={{ my: 1, fontSize: "20px" }}
+            sx={{ mt: 1, fontSize: "20px" }}
             fontWeight={"bold"}
           >
             Gender<sup style={{ color: "red" }}>*</sup>
@@ -203,6 +201,7 @@ function BookingSlots() {
             </Typography>
           )}
           <RadioGroup
+            sx={{ width: "1%" }}
             aria-labelledby="demo-controlled-radio-buttons-group"
             name="controlled-radio-buttons-group"
             value={bookinginfo.Gender}
@@ -211,28 +210,28 @@ function BookingSlots() {
             }}
           >
             <FormControlLabel
-              value="female"
+              value="Female"
               control={<Radio />}
               label="Female"
             />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-            <FormControlLabel value="other" control={<Radio />} label="Other" />
+            <FormControlLabel value="Male" control={<Radio />} label="Male" />
+            <FormControlLabel value="Other" control={<Radio />} label="Other" />
           </RadioGroup>
           <Box sx={{ minWidth: 120 }} padding={3} paddingLeft={0}>
             <Typography
               align="left"
               padding={2}
               paddingLeft={0}
-              sx={{ mt: 1, fontSize: "20px" }}
+              sx={{ fontSize: "20px" }}
               fontWeight={"bold"}
             >
               Plan<sup style={{ color: "red" }}>*</sup>
             </Typography>
             <FormControl fullWidth>
-              <InputLabel id="Plan">Plan</InputLabel>{" "}
+              <InputLabel id="Plan">Plan</InputLabel>
               <Select
                 sx={{
-                  border: "solid 1px black",
+                  color: "black",
                   "&::after": {
                     content: "''",
                     position: "absolute",
@@ -245,7 +244,7 @@ function BookingSlots() {
                 labelId="Plan"
                 id="Plan-select"
                 value={bookinginfo.Plan}
-                label="Age"
+                label="Plan"
                 onChange={(newValue) => {
                   setBookinginfo({
                     ...bookinginfo,
@@ -356,7 +355,6 @@ function BookingSlots() {
               <InputLabel id="Payment">Payment</InputLabel>
               <Select
                 sx={{
-                  border: "solid 1px black",
                   "&::after": {
                     content: "''",
                     position: "absolute",
@@ -377,10 +375,37 @@ function BookingSlots() {
                   });
                 }}
               >
-                <MenuItem value={"UPI"}>UPI</MenuItem>
-                <MenuItem value={"Net Banking"}>Net Banking</MenuItem>
-                <MenuItem value={"Cash"}>Cash</MenuItem>
+                <MenuItem value={"UPI"}>
+                  <img
+                    style={{ marginRight: "30px" }}
+                    src=".\img\upi-icon.svg"
+                    alt="UPI"
+                    width={"50px"}
+                  ></img>
+                  UPI
+                </MenuItem>
+                <MenuItem value={"Net Banking"}>
+                  {" "}
+                  <img
+                    style={{ marginRight: "30px" }}
+                    src=".\img\net-banking-icon.svg"
+                    alt="net banking"
+                    width={"50px"}
+                  ></img>
+                  Net Banking
+                </MenuItem>
+                <MenuItem value={"Cash"}>
+                  {" "}
+                  <img
+                    style={{ marginRight: "30px" }}
+                    src=".\img\payroll-salary-icon.svg"
+                    alt="cash"
+                    width={"50px"}
+                  ></img>
+                  Cash
+                </MenuItem>
               </Select>
+
               {bookingerror.PaymentError && (
                 <Typography
                   align="left"

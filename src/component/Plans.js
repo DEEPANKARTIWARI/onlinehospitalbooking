@@ -19,7 +19,7 @@ function Plans({ setMenudata }) {
       drName: "Prem Jadhav",
       mrp: "320",
       actMrp: "180",
-      slots: "2",
+      slots: "10",
     },
     {
       img: "https://newassets.apollo247.com/organs/ic_thyroid.png",
@@ -27,7 +27,7 @@ function Plans({ setMenudata }) {
       drName: "Suhail Ahamed",
       mrp: "435",
       actMrp: "370",
-      slots: "4",
+      slots: "10",
     },
     {
       img: "https://newassets.apollo247.com/organs/ic_kidney.png",
@@ -35,7 +35,7 @@ function Plans({ setMenudata }) {
       drName: "Mani",
       mrp: "524",
       actMrp: "420",
-      slots: "5",
+      slots: "10",
     },
     {
       img: "https://newassets.apollo247.com/cms/2021-05/heart.png",
@@ -43,7 +43,7 @@ function Plans({ setMenudata }) {
       drName: "Sheetal Bagal",
       mrp: "199",
       actMrp: "109",
-      slots: "6",
+      slots: "10",
     },
     {
       img: "https://newassets.apollo247.com/cms/2021-07/Full%20body.png",
@@ -51,7 +51,7 @@ function Plans({ setMenudata }) {
       drName: "Samanth ",
       mrp: "1435",
       actMrp: "1370",
-      slots: "1",
+      slots: "10",
     },
     {
       img: "https://newassets.apollo247.com/cms/2021-05/pregnancy.png",
@@ -59,7 +59,7 @@ function Plans({ setMenudata }) {
       drName: "Mounika",
       mrp: "599",
       actMrp: "449",
-      slots: "6",
+      slots: "10",
     },
   ]);
 
@@ -67,7 +67,6 @@ function Plans({ setMenudata }) {
   // let lc = localStorage.getItem("adminData");
   // if (lc === !null) {
   //   temp = JSON.parse(lc);
-
   // } else {
   //   temp = bookSlot;
   // }

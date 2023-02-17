@@ -34,6 +34,7 @@ function BookingDisplay() {
         fontFamily={"initial"}
         textAlign={"center"}
         sx={{
+          mt: 5,
           backgroundImage: " linear-gradient(to right,white, black , white)",
           color: "white",
         }}
