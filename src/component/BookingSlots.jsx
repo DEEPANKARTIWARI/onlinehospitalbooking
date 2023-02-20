@@ -37,7 +37,7 @@ function BookingSlots() {
     let tempGenderError = false;
     let tempPlanError = false;
     let tempPaymentError = false;
-    if (bookinginfo.Date == null) {
+    if (bookinginfo.Date == "") {
       tempDateError = true;
       error = true;
     }
@@ -87,7 +87,7 @@ function BookingSlots() {
       localStorage.setItem("adminData", JSON.stringify(adminData));
     });
     setBookinginfo({
-      Date: null,
+      Date: new Date().toISOString().slice(0, 10),
       Gender: "",
       Plan: "",
       Payment: "",
@@ -114,7 +114,7 @@ function BookingSlots() {
         },
       }}
     >
-      <Box width={"75%"} marginLeft={"12.5%"} marginTop={"2.5%"}>
+      <Box width={"75%"} marginLeft={"12.5%"} marginTop={"40px"}>
         <Typography
           variant="h2"
           textAlign={"center"}
@@ -151,15 +151,15 @@ function BookingSlots() {
             <Typography
               align="left"
               padding={2}
+              pb={1}
               paddingLeft={0}
               sx={{
                 display: {
                   xs: "none",
                   md: "block",
-                  my: 2,
-
-                  fontSize: "20px",
                 },
+
+                fontSize: "20px",
               }}
               fontWeight={"bold"}
             >
@@ -168,7 +168,6 @@ function BookingSlots() {
             <TextField
               defaultValue={new Date().toISOString().slice(0, 10)}
               inputProps={{
-                // min: "2021-02-20T00:00",
                 min: new Date().toISOString().slice(0, 10),
               }}
               type={"date"}
@@ -217,10 +216,10 @@ function BookingSlots() {
             <FormControlLabel value="Male" control={<Radio />} label="Male" />
             <FormControlLabel value="Other" control={<Radio />} label="Other" />
           </RadioGroup>
-          <Box sx={{ minWidth: 120 }} padding={3} paddingLeft={0}>
+          <Box sx={{ minWidth: 120 }} pb={3} paddingLeft={0}>
             <Typography
               align="left"
-              padding={2}
+              p={1}
               paddingLeft={0}
               sx={{ fontSize: "20px" }}
               fontWeight={"bold"}
@@ -346,7 +345,14 @@ function BookingSlots() {
           >
             <Typography
               align="left"
-              sx={{ my: 2, fontSize: "20px" }}
+              sx={{
+                display: {
+                  xs: "none",
+                  md: "block",
+                },
+                my: 2,
+                fontSize: "20px",
+              }}
               fontWeight={"bold"}
             >
               Mode of Payment<sup style={{ color: "red" }}>*</sup>
@@ -420,7 +426,7 @@ function BookingSlots() {
           </Box>
         </Box>
 
-        <Stack spacing={2} direction="row" justifyContent={"center"}>
+        <Stack spacing={4} direction="row" justifyContent={"center"}>
           <Button
             variant="contained"
             color="success"
