@@ -68,7 +68,7 @@ export default function RecipeReviewCard() {
       
     </Grid>
     <Grid item xs={12} md={4}>
-    <Card sx={{ maxWidth: 345 }}>
+    <Card >
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
@@ -145,7 +145,7 @@ export default function RecipeReviewCard() {
     </Grid>
 
     <Grid item xs={12} md={4}>
-    <Card sx={{ maxWidth: 345 }}>
+    <Card >
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
@@ -222,7 +222,7 @@ export default function RecipeReviewCard() {
     </Grid>
 
     <Grid item xs={12} md={4}>
-    <Card sx={{ maxWidth: 345 }}>
+    <Card >
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">

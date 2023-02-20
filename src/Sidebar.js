@@ -15,7 +15,7 @@ import ListItemText from "@mui/material/ListItemText";
 
 // import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from "@mui/material/Toolbar";
-
+import MenuIcon from '@mui/icons-material/Menu';
 import InfoIcon from "@mui/icons-material/Info";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import BookOnlineIcon from "@mui/icons-material/BookOnline";
@@ -152,7 +152,14 @@ function ResponsiveDrawer(props) {
             }}
           >
             <Toolbar>
-              <IconButton></IconButton>
+              <IconButton color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: 'none' } }}
+          >
+            <MenuIcon />
+            </IconButton>
 
               {/* <Box sx={{ '& > :not(style)': { m: 1 } }} >
       <FormControl variant="standard"> */}
@@ -184,7 +191,7 @@ function ResponsiveDrawer(props) {
                 keepMounted: true, // Better open performance on mobile.
               }}
               sx={{
-                display: { xs: "block", sm: "none" },
+                display: { xs: "block", md: "none" },
                 "& .MuiDrawer-paper": {
                   boxSizing: "border-box",
                   width: drawerWidth,
